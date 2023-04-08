@@ -1,12 +1,8 @@
 package com.BikkadIT.email;
 
 import java.util.Properties;
+import jakarta.mail.*;
 import org.springframework.stereotype.Component;
-import jakarta.mail.Authenticator;
-import jakarta.mail.Message;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
@@ -15,7 +11,7 @@ public class GmailSender {
 		
 		boolean flag=false;
 		
-		public boolean sendEmail(String to, String from, String subject, String text) {
+		public boolean sendEmail(String to, String from, String subject, String text, String filename) {
 			Properties properties=new Properties();
 			
 			properties.put("mail.smtp.auth", true);
@@ -27,7 +23,7 @@ public class GmailSender {
 			properties.put("mail.smtp.host", "smtp.gmail.com");
 			
 			String username="pradipmunde92";
-			String password="";
+			String password="zsrvdektgndawphz";
 			
 			
 			Session session=Session.getInstance(properties,new Authenticator(){
@@ -43,7 +39,9 @@ public class GmailSender {
 				
 				message.setSubject(subject);
 				message.setText(text);
-				
+
+
+//
 				Transport.send(message);
 				
 				flag= true;
@@ -51,7 +49,7 @@ public class GmailSender {
 		     catch (Exception e) {
 		    	 e.printStackTrace();
 		     }
-			
+
 			
 			
 			return flag;
